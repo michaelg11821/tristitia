@@ -21,7 +21,7 @@ type engine struct {
 }
 
 func createEngine() (*engine, error) {
-	var egn engine
+	var engine engine
 
 	file, err := os.Open("config.json")
 	if err != nil {
@@ -30,13 +30,13 @@ func createEngine() (*engine, error) {
 	defer file.Close()
 
 	decoder := json.NewDecoder(file)
-	err = decoder.Decode(&egn)
+	err = decoder.Decode(&engine)
 	if err != nil {
 		return nil, err
 	}
 
-	if egn.Cooldown <= 0 {
-		egn.Cooldown = 1
+	if engine.Cooldown <= 0 {
+		engine.Cooldown = 1
 	}
 
 	dnsServers := []string{"8.8.8.8", "8.8.4.4", "1.1.1.1", "1.0.0.1"}
@@ -67,7 +67,7 @@ func createEngine() (*engine, error) {
 		return nil, err
 	}
 
-	egn.Client = client
+	engine.Client = client
 
-	return &egn, nil
+	return &engine, nil
 }

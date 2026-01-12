@@ -13,7 +13,7 @@ import (
 func (e *engine) makeReq(method, url string, headers [][2]string, body []byte) (*http.Request, error) {
 	req, err := http.NewRequest(method, url, bytes.NewBuffer(body))
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("Failed to create request: %v", err)
 	}
 
 	for _, header := range headers {
@@ -29,7 +29,7 @@ func (e *engine) doReq(req *http.Request, useDefaultResponseHandling bool) (*htt
 	for i := 0; i < maxRetries; i++ {
 		resp, err := e.Client.Do(req)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("Failed to perform request: %v", err)
 		}
 
 		if useDefaultResponseHandling {

@@ -46,10 +46,12 @@ func (e *engine) doReq(req *http.Request, useDefaultResponseHandling bool) (*htt
 }
 
 func discardResp(resp *http.Response) {
-	if resp != nil && resp.Body != nil {
-		io.Copy(io.Discard, resp.Body)
-		defer resp.Body.Close()
+	if resp == nil || resp.Body == nil {
+		return
 	}
+
+	io.Copy(io.Discard, resp.Body)
+	defer resp.Body.Close()
 }
 
 func readJsonRespBody[R []NarouChapterNumResp | []NarouCharCountResp](res *http.Response) (R, error) {

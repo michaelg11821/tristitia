@@ -114,6 +114,7 @@ func (e *engine) watch(ncode string) {
 			err := e.sendWatchNotification(ncode, currentLength, lastLength, defaultHeaders)
 			if err != nil {
 				fmt.Println(err)
+				return
 			}
 
 			lastLength = currentLength

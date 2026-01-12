@@ -32,7 +32,7 @@ func (e *engine) getCharCount(ncode string, headers [][2]string) (int64, error) 
 		return 0, fmt.Errorf("[%s] Unexpected Narou JSON shape (expected 2 array items)", ncode)
 	}
 
-	return resp[1].Length, nil
+	return resp[1].CharCount, nil
 }
 
 func (e *engine) getLatestChapterNum(ncode string, headers [][2]string) (int, error) {

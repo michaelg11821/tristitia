@@ -1,8 +1,8 @@
 package main
 
 type NarouCharCountResp struct {
-	Allcount int   `json:"allcount,omitempty"`
-	Length   int64 `json:"length,omitempty"`
+	AllCount  int   `json:"allcount,omitempty"`
+	CharCount int64 `json:"length,omitempty"`
 }
 
 func getCharCountEndpoint(ncode string) string {
@@ -10,7 +10,7 @@ func getCharCountEndpoint(ncode string) string {
 }
 
 type NarouChapterNumResp struct {
-	Allcount      int `json:"allcount,omitempty"`
+	AllCount      int `json:"allcount,omitempty"`
 	LatestChapter int `json:"general_all_no,omitempty"`
 }
 
